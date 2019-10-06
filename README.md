@@ -82,4 +82,5 @@ Where SOURCE contains the clothing you want to transfer, and TARGET contains the
 
 # Credits
 - The layout of this repository is strongly influenced by Jun-Yan Zhu's [pytorch-CycleGAN-and-pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix) repository, though I've implemented significant changes. Many thanks to their team for open sourcing their code.
-- Many thanks to Amit Raj for patiently responding to my questions throughout the year.
+- Many thanks to Amit Raj, the main author of SwapNet, for patiently responding to my questions throughout the year.
+- Many thanks to Khiem Pham for his helpful experiments on the warp stage and contribution to this repository.
