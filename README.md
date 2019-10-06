@@ -6,7 +6,7 @@
 <img src="media/diagram.png" alt="SwapNet diagram" width=600>
 </p>
 
-For more than a year, I've put all my efforts into reproducing [SwapNet (Raj et al. 2018](http://www.eye.gatech.edu/swapnet/paper.pdf). Since an official codebase has not been released, by making my implementation public, I hope to contribute to transparency and openness in the Deep Learning community.
+For more than a year, I've put all my efforts into reproducing [SwapNet (Raj et al. 2018)](http://www.eye.gatech.edu/swapnet/paper.pdf). Since an official codebase has not been released, by making my implementation public, I hope to contribute to transparency and openness in the Deep Learning community.
 
 # Installation
 This repository is built with PyTorch. I recommend installing dependencies via conda.
