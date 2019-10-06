@@ -1,6 +1,9 @@
 # SwapNet
 Unofficial PyTorch reproduction of SwapNet.
 
+![SwapNet example](media/example.png)
+![SwapNet diagram](media/diagram.png)
+
 For more than a year, I've put all my efforts into reproducing SwapNet (Raj et al. 2018). By making my implementation public, I hope to contribute to transparency and openness in the Deep Learning community.
 
 See the original paper [here](http://www.eye.gatech.edu/swapnet/paper.pdf).
