@@ -64,11 +64,22 @@ Train progress can be viewed by opening `localhost:8097` in your web browser.
 ```
 python train.py --name warp_stage --model warp --dataroot data/deep_fashion
 ```
+Sample visualization of warp stage:
+<p align="center">
+<img src="media/warp_train_example.png" alt="warp example" width=500>
+</p>
 
 2) Train texture stage
 ```
 python train.py --name texture_stage --model texture --dataroot data/deep_fashion
 ```
+Below is an example of train progress visualization in Visdom. The texture stage draws the input texture with ROI 
+boundaries (left most), the input cloth segmentation (second from left), the generated 
+output, and target texture (right most).
+
+<p align="center">
+<img src="media/texture_train_example.png" alt="texture example" width=600>
+</p>
 
 # Inference
 Inference will run the warp stage and texture stage in series.
