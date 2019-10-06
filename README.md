@@ -91,6 +91,33 @@ python inference.py --warp_checkpoint checkpoints/warp_stage/[generator_name.pth
 ```
 Where SOURCE contains the clothing you want to transfer, and TARGET contains the person to place clothing on.
 
+# Comparisons to Original SwapNet
+### Similarities
+- Warp Stage
+  - [x] per-channel random affine augmentation for cloth inputs
+  - [x] RGB images for body segmentations
+  - [x] dual U-Net architecture
+- Texture Stage
+  - [x] ROI pooling
+  - mostly everything else is the same
+
+### Differences
+- Warp Stage
+  - Body segmentation: Neural Body Fitting instead of Unite the People
+  - cloth segmentations are stored as a flat 2D map of numeric labels, then read as 1-hot encoded tensors. In the original SwapNet, they used probability maps. Probability maps took up too much storage space (dozens of GB) on my computer.
+  - Option to train on video data. For video data, the different frames provide additional "augmentation" for input cloth in the warp stage.
+- Texture Stage
+  - cloth segmentation network: LIP_JPPNet instead of LIP_SSL
+  - currently VGG feature loss prevents convergence, need to debug this
+- Overall
+  - Hyperparameters most likely. The hyperparameters were not listed in the original paper, so I had to experiment with these values.
+  - Implemented random label smoothing for better GAN stability
+
+### TODO:
+- [] copy face data from target to generated output during inference ("we copy the face and hair pixels from B into the result")
+- [] match texture quality produced in original paper
+- [] test DRAGAN penalty and other advanced GAN losses
+
 # Credits
 - The layout of this repository is strongly influenced by Jun-Yan Zhu's [pytorch-CycleGAN-and-pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix) repository, though I've implemented significant changes. Many thanks to their team for open sourcing their code.
 - Many thanks to Amit Raj, the main author of SwapNet, for patiently responding to my questions throughout the year.
