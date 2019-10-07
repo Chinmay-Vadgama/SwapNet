@@ -62,7 +62,7 @@ Train progress can be viewed by opening `localhost:8097` in your web browser.
 
 1) Train warp stage
 ```
-python train.py --name warp_stage --model warp --dataroot data/deep_fashion
+python train.py --name deep_fashion/warp --model warp --dataroot data/deep_fashion
 ```
 Sample visualization of warp stage:
 <p align="center">
@@ -71,7 +71,7 @@ Sample visualization of warp stage:
 
 2) Train texture stage
 ```
-python train.py --name texture_stage --model texture --dataroot data/deep_fashion
+python train.py --name deep_fashion/texture --model texture --dataroot data/deep_fashion
 ```
 Below is an example of train progress visualization in Visdom. The texture stage draws the input texture with ROI 
 boundaries (left most), the input cloth segmentation (second from left), the generated 
@@ -84,6 +84,13 @@ output, and target texture (right most).
 # Inference
 Inference will run the warp stage and texture stage in series.
 
+For deep fashion:
+```
+python inference.py --checkpoint deep_fashion --dataroot data/deep_fashion --shuffle_data True
+```
+`--shuffle_data True` ensures that bodys are matched with different clothing for the transfer.
+
+To specify specific clothing to transfer to a specific body:
 ```
 python inference.py --warp_checkpoint checkpoints/warp_stage/[generator_name.pth] \
   --texture_checkpoint checkpoints/texture_stage/[generator_name.pth] \
@@ -114,9 +121,9 @@ Where SOURCE contains the clothing you want to transfer, and TARGET contains the
   - Implemented random label smoothing for better GAN stability
 
 ### TODO:
-- [] Copy face data from target to generated output during inference ("we copy the face and hair pixels from B into the result")
-- [] Match texture quality produced in original paper
-- [] Test DRAGAN penalty and other advanced GAN losses
+- [ ] Copy face data from target to generated output during inference ("we copy the face and hair pixels from B into the result")
+- [ ] Match texture quality produced in original paper (likely due to Feature Loss)
+- [ ] Test DRAGAN penalty and other advanced GAN losses
 
 # Credits
 - The layout of this repository is strongly influenced by Jun-Yan Zhu's [pytorch-CycleGAN-and-pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix) repository, though I've implemented significant changes. Many thanks to their team for open sourcing their code.
