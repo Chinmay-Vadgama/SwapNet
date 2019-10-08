@@ -86,9 +86,10 @@ Inference will run the warp stage and texture stage in series.
 
 For deep fashion:
 ```
-python inference.py --checkpoint deep_fashion --dataroot data/deep_fashion --shuffle_data True
+python inference.py --checkpoint checkpoints/deep_fashion --dataroot data/deep_fashion --shuffle_data True
 ```
-`--shuffle_data True` ensures that bodys are matched with different clothing for the transfer.
+`--shuffle_data True` ensures that bodys are matched with different clothing for the transfer. 
+By default, only 50 images are run for inference. This can be increased by setting the value of `--max_dataset_size`.
 
 To specify specific clothing to transfer to a specific body:
 ```
@@ -103,9 +104,11 @@ Where SOURCE contains the clothing you want to transfer, and TARGET contains the
 - Warp Stage
   - [x] Per-channel random affine augmentation for cloth inputs
   - [x] RGB images for body segmentations
-  - [x] Dual U-Net architecture
+  - [x] Dual U-Net warp architecture
+  - [x] Warp loss (cross-entropy plus small adversarial loss)
 - Texture Stage
   - [x] ROI pooling
+  - [x] Texture module architecture
   - mostly everything else is the same
 
 ### Differences
